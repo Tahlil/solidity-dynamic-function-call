@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/Tahlil/solidity-dynamic-function-call#readme",
   "dependencies": {
-    "dotenv": "^16.0.1"
+    "dotenv": "^16.0.1",
+    "hardhat-abi-exporter": "^2.10.0"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.6",
