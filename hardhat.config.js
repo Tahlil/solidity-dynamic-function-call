@@ -38,4 +38,9 @@ module.exports = {
   namedAccounts: {
     deployer: 0,
   },
+  abiExporter: {
+    path: './abi',
+    pretty: true,
+    format: "minimal",
+  }
 };
