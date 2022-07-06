@@ -13,7 +13,6 @@ contract Greeter {
         value2 = _value;
     }
 
-    
     function set(uint n) external{
         value = n;
     }
@@ -25,5 +24,15 @@ contract Greeter {
     
     function get() external view returns(uint) {
         return value;
+    }
+
+    function execute(address _to, bytes calldata _data)
+        public
+        payable
+        returns (bytes memory)
+    {
+        (bool success, bytes memory returnData) = _to.call{value: msg.value}(_data);
+        require(success);
+        return returnData;
     }
 }
