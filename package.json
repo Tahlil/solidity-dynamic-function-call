@@ -17,8 +17,11 @@
   },
   "homepage": "https://github.com/Tahlil/solidity-dynamic-function-call#readme",
   "dependencies": {
+    "@celo/contractkit": "^2.0.0",
+    "@celo/utils": "^2.0.0",
     "dotenv": "^16.0.1",
-    "hardhat-abi-exporter": "^2.10.0"
+    "hardhat-abi-exporter": "^2.10.0",
+    "web3": "^1.3.6"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.6",
