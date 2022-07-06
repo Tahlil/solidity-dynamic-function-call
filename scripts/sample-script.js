@@ -4,6 +4,10 @@
 // When running the script with `npx hardhat run <script>` you'll find the Hardhat
 // Runtime Environment's members available in the global scope.
 const hre = require("hardhat");
+function writeJsonFile(file, content) {
+  let jsonData = JSON.stringify(content)
+  fs.writeFileSync(file, jsonData)
+}
 
 async function main() {
   // Hardhat always runs the compile task when running scripts with its command
@@ -18,7 +22,7 @@ async function main() {
   const greeter = await Greeter.deploy(11);
 
   await greeter.deployed();
-
+  writeJsonFile("deplpoyedAddress.json", {address: greeter.address});
   console.log("Greeter deployed to:", greeter.address);
 }
 
