@@ -9,6 +9,13 @@ const ContractKit = require('@celo/contractkit')
 const web3 = new Web3('https://alfajores-forno.celo-testnet.org')
 const kit = ContractKit.newKitFromWeb3(web3)
 
+function readJsonFile(file) {
+    let bufferData = fs.readFileSync(file)
+    let stData = bufferData.toString()
+    let data = JSON.parse(stData)
+    return data
+}
+
 
 const Greeter = require('../abi/contracts/Greeter.sol/Greeter.json')
 
@@ -17,10 +24,11 @@ async function initContract(){
     // Check the Celo network ID
     const networkId = await web3.eth.net.getId();
     const deployedNetwork = Greeter.networks[networkId];
+    const deployInfo = readJsonFile("deplpoyedAddress.json");
     // Create a new contract instance with the Greeter contract info
     let instance = new web3.eth.Contract(
         Greeter.abi,
-        deployedNetwork && deployedNetwork.address
+        deployInfo.address
     );
 
     get(instance)
