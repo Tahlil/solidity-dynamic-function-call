@@ -41,7 +41,6 @@ module.exports = {
   },
   abiExporter: {
     path: './abi',
-    pretty: true,
-    format: "minimal",
+    format: "json",
   }
 };

@@ -120,3 +120,5 @@ dist
 
 #For mac
 .DS_Store
+
+artifacts/
