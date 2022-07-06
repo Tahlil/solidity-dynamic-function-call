@@ -35,6 +35,14 @@ async function initContract(){
     set(instance, 1)
 }
 
+function asExecuteArg(functionName, argTypes, ...args) {  
+    let signature = `function ${functionName}(${argTypes})`
+    let ABI = [signature];
+    let interface = new ethers.utils.Interface(ABI);
+    let output = interface.encodeFunctionData(functionName, args);
+    return output;
+  }
+
 // Read the 'name' stored in the Greeter.sol contract
 async function get(instance){
     let name = await instance.methods.get().call()
