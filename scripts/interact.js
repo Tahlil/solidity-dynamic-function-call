@@ -9,17 +9,17 @@ const ContractKit = require('@celo/contractkit')
 const web3 = new Web3('https://alfajores-forno.celo-testnet.org')
 const kit = ContractKit.newKitFromWeb3(web3)
 
-// import HelloWorld info
-const HelloWorld = require('./build/contracts/HelloWorld.json')
+
+const Greeter = require('../abi/contracts/Greeter.sol/Greeter.json')
 
 // Initialize a new Contract interface
 async function initContract(){
     // Check the Celo network ID
     const networkId = await web3.eth.net.getId();
-    const deployedNetwork = HelloWorld.networks[networkId];
-    // Create a new contract instance with the HelloWorld contract info
+    const deployedNetwork = Greeter.networks[networkId];
+    // Create a new contract instance with the Greeter contract info
     let instance = new web3.eth.Contract(
-        HelloWorld.abi,
+        Greeter.abi,
         deployedNetwork && deployedNetwork.address
     );
 
@@ -27,13 +27,13 @@ async function initContract(){
     set(instance, 1)
 }
 
-// Read the 'name' stored in the HelloWorld.sol contract
+// Read the 'name' stored in the Greeter.sol contract
 async function get(instance){
     let name = await instance.methods.get().call()
     console.log(name)
 }
 
-// Set the 'name' stored in the HelloWorld.sol contract
+// Set the 'name' stored in the Greeter.sol contract
 async function set(instance, newName){
 
     // Add your account to ContractKit to sign transactions
@@ -41,7 +41,7 @@ async function set(instance, newName){
     kit.connection.addAccount(process.env.PRIVATE_KEY)
     const address = privateKeyToAddress(process.env.PRIVATE_KEY)
 
-    // Encode the transaction to HelloWorld.sol according to the ABI
+    // Encode the transaction to Greeter.sol according to the ABI
     let txObject = await instance.methods.set(newName)
     
     // Send the transaction
